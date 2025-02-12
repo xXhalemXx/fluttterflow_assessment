@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'enter_your_details_model.dart';
@@ -26,14 +27,14 @@ class _EnterYourDetailsWidgetState extends State<EnterYourDetailsWidget> {
     super.initState();
     _model = createModel(context, () => EnterYourDetailsModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.weightTextFiledTextController ??= TextEditingController();
+    _model.weightTextFiledFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.heightTextFiledTextController ??= TextEditingController();
+    _model.heightTextFiledFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.ageTextFiledTextController ??= TextEditingController();
+    _model.ageTextFiledFocusNode ??= FocusNode();
   }
 
   @override
@@ -53,446 +54,490 @@ class _EnterYourDetailsWidgetState extends State<EnterYourDetailsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
-          leading: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
-                  child: FlutterFlowIconButton(
-                    borderRadius: 8.0,
-                    buttonSize: 30.0,
-                    icon: Icon(
-                      FFIcons.kimage,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 15.0,
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: double.infinity,
+              height: 100.0,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(14.0, 0.0, 14.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Align(
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      child: FlutterFlowIconButton(
+                        borderRadius: 8.0,
+                        buttonSize: 48.0,
+                        icon: Icon(
+                          FFIcons.karrowBack,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 15.0,
+                        ),
+                        onPressed: () async {
+                          context.safePop();
+                        },
+                      ),
                     ),
-                    onPressed: () {
-                      print('IconButton pressed ...');
-                    },
-                  ),
+                    Text(
+                      'Enter your details',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Poppins',
+                            color: const Color(0xFF1E1E1E),
+                            fontSize: 20.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w500,
+                            useGoogleFonts:
+                                GoogleFonts.asMap().containsKey('Poppins'),
+                          ),
+                    ),
+                    Container(
+                      width: 48.0,
+                      decoration: const BoxDecoration(),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-          title: Text(
-            'Enter your details',
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Poppins',
-                  color: const Color(0xFF1E1E1E),
-                  fontSize: 20.0,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.w500,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey('Poppins'),
-                ),
-          ),
-          actions: const [],
-          centerTitle: true,
-          toolbarHeight: 86.0,
-          elevation: 0.0,
-        ),
-        body: SafeArea(
-          top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 30.0, 24.0, 38.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Gender',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Poppins',
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w500,
-                        useGoogleFonts:
-                            GoogleFonts.asMap().containsKey('Poppins'),
-                      ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 10.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                FlutterFlowDropDown<String>(
-                  controller: _model.dropDownValueController ??=
-                      FormFieldController<String>(null),
-                  options: const ['Mail', 'Femail'],
-                  onChanged: (val) =>
-                      safeSetState(() => _model.dropDownValue = val),
-                  width: double.infinity,
-                  height: 52.0,
-                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Questrial',
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        fontSize: 16.0,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            GoogleFonts.asMap().containsKey('Questrial'),
-                      ),
-                  hintText: 'Choose your gender',
-                  icon: Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                    size: 24.0,
-                  ),
-                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                  elevation: 2.0,
-                  borderColor: FlutterFlowTheme.of(context).accent4,
-                  borderWidth: 1.0,
-                  borderRadius: 8.0,
-                  margin: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                  hidesUnderline: true,
-                  isOverButton: false,
-                  isSearchable: false,
-                  isMultiSelect: false,
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 24.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                Text(
-                  'Weight',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Poppins',
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w500,
-                        useGoogleFonts:
-                            GoogleFonts.asMap().containsKey('Poppins'),
-                      ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 10.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 52.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: TextFormField(
-                      controller: _model.textController1,
-                      focusNode: _model.textFieldFocusNode1,
-                      autofocus: false,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        isDense: false,
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
-                                ),
-                        hintText: 'Enter your weight',
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).accent4,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).accent4,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 16.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                            useGoogleFonts:
-                                GoogleFonts.asMap().containsKey('Poppins'),
-                          ),
-                      cursorColor: FlutterFlowTheme.of(context).primaryText,
-                      validator:
-                          _model.textController1Validator.asValidator(context),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 24.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                Text(
-                  'Height',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Poppins',
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w500,
-                        useGoogleFonts:
-                            GoogleFonts.asMap().containsKey('Poppins'),
-                      ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 10.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 52.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: TextFormField(
-                      controller: _model.textController2,
-                      focusNode: _model.textFieldFocusNode2,
-                      autofocus: false,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        isDense: false,
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
-                                ),
-                        hintText: 'Enter your height',
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).accent4,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).accent4,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 16.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                            useGoogleFonts:
-                                GoogleFonts.asMap().containsKey('Poppins'),
-                          ),
-                      cursorColor: FlutterFlowTheme.of(context).primaryText,
-                      validator:
-                          _model.textController2Validator.asValidator(context),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 24.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                Text(
-                  'Age',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Poppins',
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w500,
-                        useGoogleFonts:
-                            GoogleFonts.asMap().containsKey('Poppins'),
-                      ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 10.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 52.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: TextFormField(
-                      controller: _model.textController3,
-                      focusNode: _model.textFieldFocusNode3,
-                      autofocus: false,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        isDense: false,
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
-                                ),
-                        hintText: 'Enter your age in years',
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).accent4,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).accent4,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 16.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                            useGoogleFonts:
-                                GoogleFonts.asMap().containsKey('Poppins'),
-                          ),
-                      cursorColor: FlutterFlowTheme.of(context).primaryText,
-                      validator:
-                          _model.textController3Validator.asValidator(context),
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  text: 'Next',
-                  options: FFButtonOptions(
-                    width: double.infinity,
-                    height: 60.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFFEAECF0),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Gender',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Poppins',
-                          color: FlutterFlowTheme.of(context).secondaryText,
                           letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
                           useGoogleFonts:
                               GoogleFonts.asMap().containsKey('Poppins'),
                         ),
-                    elevation: 0.0,
-                    borderRadius: BorderRadius.circular(12.0),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
+                    child: FlutterFlowDropDown<String>(
+                      controller: _model.genderDropDownValueController ??=
+                          FormFieldController<String>(null),
+                      options: const ['Mail', 'Femail'],
+                      onChanged: (val) =>
+                          safeSetState(() => _model.genderDropDownValue = val),
+                      width: double.infinity,
+                      height: 52.0,
+                      textStyle: FlutterFlowTheme.of(context)
+                          .bodyMedium
+                          .override(
+                            fontFamily: 'Questrial',
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            fontSize: 16.0,
+                            letterSpacing: 0.0,
+                            useGoogleFonts:
+                                GoogleFonts.asMap().containsKey('Questrial'),
+                          ),
+                      hintText: 'Choose your gender',
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 24.0,
+                      ),
+                      fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                      elevation: 2.0,
+                      borderColor: FlutterFlowTheme.of(context).accent4,
+                      borderWidth: 1.0,
+                      borderRadius: 8.0,
+                      margin:
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                      hidesUnderline: true,
+                      isOverButton: false,
+                      isSearchable: false,
+                      isMultiSelect: false,
+                    ),
+                  ),
+                  Text(
+                    'Weight',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Poppins',
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
+                          useGoogleFonts:
+                              GoogleFonts.asMap().containsKey('Poppins'),
+                        ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 52.0,
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                      ),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: TextFormField(
+                            controller: _model.weightTextFiledTextController,
+                            focusNode: _model.weightTextFiledFocusNode,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.weightTextFiledTextController',
+                              const Duration(milliseconds: 100),
+                              () => safeSetState(() {}),
+                            ),
+                            autofocus: false,
+                            textInputAction: TextInputAction.next,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: false,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .labelMediumFamily),
+                                  ),
+                              hintText: 'Enter your weight',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .labelMediumFamily),
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).accent4,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).accent4,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              suffixIcon: Icon(
+                                FFIcons.kkg,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 12.0,
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey('Poppins'),
+                                ),
+                            keyboardType: TextInputType.number,
+                            cursorColor:
+                                FlutterFlowTheme.of(context).primaryText,
+                            validator: _model
+                                .weightTextFiledTextControllerValidator
+                                .asValidator(context),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    'Height',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Poppins',
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
+                          useGoogleFonts:
+                              GoogleFonts.asMap().containsKey('Poppins'),
+                        ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 52.0,
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                      ),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: TextFormField(
+                            controller: _model.heightTextFiledTextController,
+                            focusNode: _model.heightTextFiledFocusNode,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.heightTextFiledTextController',
+                              const Duration(milliseconds: 100),
+                              () => safeSetState(() {}),
+                            ),
+                            autofocus: false,
+                            textInputAction: TextInputAction.next,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: false,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .labelMediumFamily),
+                                  ),
+                              hintText: 'Enter your height',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .labelMediumFamily),
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).accent4,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).accent4,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              suffixIcon: Icon(
+                                FFIcons.kcm,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 10.0,
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey('Poppins'),
+                                ),
+                            keyboardType: TextInputType.number,
+                            cursorColor:
+                                FlutterFlowTheme.of(context).primaryText,
+                            validator: _model
+                                .heightTextFiledTextControllerValidator
+                                .asValidator(context),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    'Age',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Poppins',
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
+                          useGoogleFonts:
+                              GoogleFonts.asMap().containsKey('Poppins'),
+                        ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 52.0,
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                    ),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: TextFormField(
+                        controller: _model.ageTextFiledTextController,
+                        focusNode: _model.ageTextFiledFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.ageTextFiledTextController',
+                          const Duration(milliseconds: 100),
+                          () => safeSetState(() {}),
+                        ),
+                        autofocus: false,
+                        textInputAction: TextInputAction.done,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          isDense: false,
+                          labelStyle: FlutterFlowTheme.of(context)
+                              .labelMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelMediumFamily),
+                              ),
+                          hintText: 'Enter your age in years',
+                          hintStyle: FlutterFlowTheme.of(context)
+                              .labelMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelMediumFamily),
+                              ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).accent4,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).accent4,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 16.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
+                              useGoogleFonts:
+                                  GoogleFonts.asMap().containsKey('Poppins'),
+                            ),
+                        keyboardType: TextInputType.number,
+                        cursorColor: FlutterFlowTheme.of(context).primaryText,
+                        validator: _model.ageTextFiledTextControllerValidator
+                            .asValidator(context),
+                      ),
+                    ),
+                  ),
+                ]
+                    .divide(const SizedBox(height: 10.0))
+                    .addToStart(const SizedBox(height: 31.0))
+                    .addToEnd(const SizedBox(height: 38.0)),
+              ),
             ),
-          ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 38.0),
+              child: FFButtonWidget(
+                onPressed: ((_model.weightTextFiledTextController.text == '') ||
+                        (_model.heightTextFiledTextController.text == '') ||
+                        (_model.ageTextFiledTextController.text == '') ||
+                        (_model.genderDropDownValue == null ||
+                            _model.genderDropDownValue == ''))
+                    ? null
+                    : () {
+                        print('Button pressed ...');
+                      },
+                text: 'Next',
+                options: FFButtonOptions(
+                  width: double.infinity,
+                  height: 60.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: GoogleFonts.getFont(
+                    'Poppins',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.0,
+                    height: 24.0,
+                  ),
+                  elevation: 0.0,
+                  borderRadius: BorderRadius.circular(12.0),
+                  disabledColor: FlutterFlowTheme.of(context).accent4,
+                  disabledTextColor: FlutterFlowTheme.of(context).secondaryText,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

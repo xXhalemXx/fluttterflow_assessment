@@ -47,14 +47,14 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             image: DecorationImage(
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.cover,
               image: Image.asset(
                 'assets/images/welcome_background.jpg',
               ).image,
             ),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 48.0, 24.0, 48.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -84,19 +84,17 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                             GoogleFonts.asMap().containsKey('Poppins'),
                       ),
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 30.0,
-                  decoration: BoxDecoration(
-                    color: const Color(0x00FFFFFF),
-                    border: Border.all(
-                      color: Colors.transparent,
-                    ),
-                  ),
-                ),
                 FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    context.pushNamed(
+                      'EnterYourDetails',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: const TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.bottomToTop,
+                        ),
+                      },
+                    );
                   },
                   text: 'Order Food',
                   options: FFButtonOptions(
@@ -106,19 +104,22 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFFF25700),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
-                          letterSpacing: 0.0,
-                          useGoogleFonts:
-                              GoogleFonts.asMap().containsKey('Poppins'),
-                        ),
+                    color: FlutterFlowTheme.of(context).primary,
+                    textStyle: GoogleFonts.getFont(
+                      'Poppins',
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0,
+                      height: 24.0,
+                    ),
                     elevation: 0.0,
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                 ),
-              ],
+              ]
+                  .divide(const SizedBox(height: 30.0))
+                  .addToStart(const SizedBox(height: 48.0))
+                  .addToEnd(const SizedBox(height: 48.0)),
             ),
           ),
         ),

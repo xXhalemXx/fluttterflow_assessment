@@ -3,9 +3,11 @@ import 'package:flutter/widgets.dart';
 class FFIcons {
   FFIcons._();
 
-  static const String _myFlutterAppFamily = 'MyFlutterApp';
+  static const String _icomoonFamily = 'Icomoon';
 
-  // MyFlutterApp
-  static const IconData kimage =
-      IconData(0xe800, fontFamily: _myFlutterAppFamily);
+  // icomoon
+  static const IconData kkg = IconData(0xe900, fontFamily: _icomoonFamily);
+  static const IconData kcm = IconData(0xe901, fontFamily: _icomoonFamily);
+  static const IconData karrowBack =
+      IconData(0xe902, fontFamily: _icomoonFamily);
 }
